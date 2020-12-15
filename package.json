@@ -18,7 +18,7 @@
     "prepublishOnly": "tsdx build"
   },
   "dependencies": {
-    "capital-dex-core": "https://github.com/CurioTeam/capital-dex-core.git#71131ae",
+    "capital-dex-core": "https://github.com/CurioTeam/capital-dex-core.git#1ec1717",
     "big.js": "^5.2.2",
     "decimal.js-light": "^2.5.0",
     "jsbi": "^3.1.1",
