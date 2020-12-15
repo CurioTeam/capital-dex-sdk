@@ -2380,9 +2380,9 @@ caniuse-lite@^1.0.30001093:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001105.tgz#d2cb0b31e5cf2f3ce845033b61c5c01566549abf"
   integrity sha512-JupOe6+dGMr7E20siZHIZQwYqrllxotAhiaej96y6x00b/48rPt42o+SzOSCPbrpsDWvRja40Hwrj0g0q6LZJg==
 
-"capital-dex-core@https://github.com/CurioTeam/capital-dex-core.git#71131ae":
+"capital-dex-core@https://github.com/CurioTeam/capital-dex-core.git#1ec1717":
   version "1.0.0"
-  resolved "https://github.com/CurioTeam/capital-dex-core.git#71131aee130913111a98ff321b09d81378676995"
+  resolved "https://github.com/CurioTeam/capital-dex-core.git#1ec171732f980865bd321ed1a910ae1294a62afc"
   dependencies:
     "@openzeppelin/contracts" "^3.3.0"
     "@openzeppelin/contracts-ethereum-package" "^3.0.0"
