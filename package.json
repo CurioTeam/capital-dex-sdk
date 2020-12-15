@@ -9,7 +9,7 @@
     "dist"
   ],
   "repository": "https://github.com/CurioTeam/capital-dex-sdk.git",
-  "module": "dist/sdk.esm.js",
+  "module": "dist/capital-dex-sdk.esm.js",
   "scripts": {
     "lint": "tsdx lint src test",
     "build": "tsdx build",
