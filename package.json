@@ -1,18 +1,14 @@
 {
-  "name": "@uniswap/sdk",
+  "name": "capital-dex-sdk",
   "license": "MIT",
-  "version": "3.0.3",
-  "description": "🛠 An SDK for building applications on top of Uniswap.",
+  "version": "1.0.0",
+  "description": "An SDK for building applications on top of Capital DEX.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/Uniswap/uniswap-sdk.git",
-  "keywords": [
-    "uniswap",
-    "ethereum"
-  ],
+  "repository": "https://github.com/CurioTeam/capital-dex-sdk.git",
   "module": "dist/sdk.esm.js",
   "scripts": {
     "lint": "tsdx lint src test",
@@ -22,7 +18,7 @@
     "prepublishOnly": "tsdx build"
   },
   "dependencies": {
-    "@uniswap/v2-core": "^1.0.0",
+    "capital-dex-core": "https://github.com/CurioTeam/capital-dex-core.git#71131ae",
     "big.js": "^5.2.2",
     "decimal.js-light": "^2.5.0",
     "jsbi": "^3.1.1",
