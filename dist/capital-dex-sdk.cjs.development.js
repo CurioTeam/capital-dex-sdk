@@ -17,7 +17,7 @@ var networks = require('@ethersproject/networks');
 var providers = require('@ethersproject/providers');
 var IUniswapV2Pair = _interopDefault(require('@uniswap/v2-core/build/IUniswapV2Pair.json'));
 
-var _SOLIDITY_TYPE_MAXIMA;
+var _FACTORY_ADDRESSES, _INIT_CODE_HASHES, _SOLIDITY_TYPE_MAXIMA;
 
 (function (ChainId) {
   ChainId[ChainId["MAINNET"] = 1] = "MAINNET";
@@ -38,8 +38,8 @@ var _SOLIDITY_TYPE_MAXIMA;
   Rounding[Rounding["ROUND_UP"] = 2] = "ROUND_UP";
 })(exports.Rounding || (exports.Rounding = {}));
 
-var FACTORY_ADDRESS = '0x8E0E163E9F66d639c448d1f5e0594CaC2558305e';
-var INIT_CODE_HASH = '0xeb421c75c82ac3e801293f21bf65f03f21b5a26a0921355126d34b4c5173bfe9';
+var FACTORY_ADDRESSES = (_FACTORY_ADDRESSES = {}, _FACTORY_ADDRESSES[exports.ChainId.MAINNET] = '0x03407772F5EBFB9B10Df007A2DD6FFf4EdE47B53', _FACTORY_ADDRESSES[exports.ChainId.ROPSTEN] = '0x8E0E163E9F66d639c448d1f5e0594CaC2558305e', _FACTORY_ADDRESSES[exports.ChainId.RINKEBY] = '0x8E0E163E9F66d639c448d1f5e0594CaC2558305e', _FACTORY_ADDRESSES[exports.ChainId.GÖRLI] = '0x8E0E163E9F66d639c448d1f5e0594CaC2558305e', _FACTORY_ADDRESSES[exports.ChainId.KOVAN] = '0x8E0E163E9F66d639c448d1f5e0594CaC2558305e', _FACTORY_ADDRESSES);
+var INIT_CODE_HASHES = (_INIT_CODE_HASHES = {}, _INIT_CODE_HASHES[exports.ChainId.MAINNET] = '0x068929976e9b11179f781aadb37dc33b6fc0d30a27419125438dab4d4d11418b', _INIT_CODE_HASHES[exports.ChainId.ROPSTEN] = '0xeb421c75c82ac3e801293f21bf65f03f21b5a26a0921355126d34b4c5173bfe9', _INIT_CODE_HASHES[exports.ChainId.RINKEBY] = '0xeb421c75c82ac3e801293f21bf65f03f21b5a26a0921355126d34b4c5173bfe9', _INIT_CODE_HASHES[exports.ChainId.GÖRLI] = '0xeb421c75c82ac3e801293f21bf65f03f21b5a26a0921355126d34b4c5173bfe9', _INIT_CODE_HASHES[exports.ChainId.KOVAN] = '0xeb421c75c82ac3e801293f21bf65f03f21b5a26a0921355126d34b4c5173bfe9', _INIT_CODE_HASHES);
 var MINIMUM_LIQUIDITY = /*#__PURE__*/JSBI.BigInt(1000); // exports for internal consumption
 
 var ZERO = /*#__PURE__*/JSBI.BigInt(0);
@@ -758,14 +758,14 @@ var Price = /*#__PURE__*/function (_Fraction) {
 
 var PAIR_ADDRESS_CACHE = {};
 var Pair = /*#__PURE__*/function () {
-  function Pair(tokenAmountA, tokenAmountB) {
+  function Pair(tokenAmountA, tokenAmountB, chainId) {
     var tokenAmounts = tokenAmountA.token.sortsBefore(tokenAmountB.token) // does safety checks
     ? [tokenAmountA, tokenAmountB] : [tokenAmountB, tokenAmountA];
-    this.liquidityToken = new Token(tokenAmounts[0].token.chainId, Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token), 18, 'CLP', 'Capital DEX LP');
+    this.liquidityToken = new Token(tokenAmounts[0].token.chainId, Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token, chainId), 18, 'CLP', 'Capital DEX LP');
     this.tokenAmounts = tokenAmounts;
   }
 
-  Pair.getAddress = function getAddress(tokenA, tokenB) {
+  Pair.getAddress = function getAddress(tokenA, tokenB, chainId) {
     var _PAIR_ADDRESS_CACHE, _PAIR_ADDRESS_CACHE$t;
 
     var tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA]; // does safety checks
@@ -773,7 +773,7 @@ var Pair = /*#__PURE__*/function () {
     if (((_PAIR_ADDRESS_CACHE = PAIR_ADDRESS_CACHE) === null || _PAIR_ADDRESS_CACHE === void 0 ? void 0 : (_PAIR_ADDRESS_CACHE$t = _PAIR_ADDRESS_CACHE[tokens[0].address]) === null || _PAIR_ADDRESS_CACHE$t === void 0 ? void 0 : _PAIR_ADDRESS_CACHE$t[tokens[1].address]) === undefined) {
       var _PAIR_ADDRESS_CACHE2, _extends2, _extends3;
 
-      PAIR_ADDRESS_CACHE = _extends({}, PAIR_ADDRESS_CACHE, (_extends3 = {}, _extends3[tokens[0].address] = _extends({}, (_PAIR_ADDRESS_CACHE2 = PAIR_ADDRESS_CACHE) === null || _PAIR_ADDRESS_CACHE2 === void 0 ? void 0 : _PAIR_ADDRESS_CACHE2[tokens[0].address], (_extends2 = {}, _extends2[tokens[1].address] = address.getCreate2Address(FACTORY_ADDRESS, solidity.keccak256(['bytes'], [solidity.pack(['address', 'address'], [tokens[0].address, tokens[1].address])]), INIT_CODE_HASH), _extends2)), _extends3));
+      PAIR_ADDRESS_CACHE = _extends({}, PAIR_ADDRESS_CACHE, (_extends3 = {}, _extends3[tokens[0].address] = _extends({}, (_PAIR_ADDRESS_CACHE2 = PAIR_ADDRESS_CACHE) === null || _PAIR_ADDRESS_CACHE2 === void 0 ? void 0 : _PAIR_ADDRESS_CACHE2[tokens[0].address], (_extends2 = {}, _extends2[tokens[1].address] = address.getCreate2Address(FACTORY_ADDRESSES[chainId], solidity.keccak256(['bytes'], [solidity.pack(['address', 'address'], [tokens[0].address, tokens[1].address])]), INIT_CODE_HASHES[chainId]), _extends2)), _extends3));
     }
 
     return PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address];
@@ -812,7 +812,7 @@ var Pair = /*#__PURE__*/function () {
     return token.equals(this.token0) ? this.reserve0 : this.reserve1;
   };
 
-  _proto.getOutputAmount = function getOutputAmount(inputAmount) {
+  _proto.getOutputAmount = function getOutputAmount(inputAmount, chainId) {
     !this.involvesToken(inputAmount.token) ?  invariant(false, 'TOKEN')  : void 0;
 
     if (JSBI.equal(this.reserve0.raw, ZERO) || JSBI.equal(this.reserve1.raw, ZERO)) {
@@ -830,10 +830,10 @@ var Pair = /*#__PURE__*/function () {
       throw new InsufficientInputAmountError();
     }
 
-    return [outputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount))];
+    return [outputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), chainId)];
   };
 
-  _proto.getInputAmount = function getInputAmount(outputAmount) {
+  _proto.getInputAmount = function getInputAmount(outputAmount, chainId) {
     !this.involvesToken(outputAmount.token) ?  invariant(false, 'TOKEN')  : void 0;
 
     if (JSBI.equal(this.reserve0.raw, ZERO) || JSBI.equal(this.reserve1.raw, ZERO) || JSBI.greaterThanOrEqual(outputAmount.raw, this.reserveOf(outputAmount.token).raw)) {
@@ -845,7 +845,7 @@ var Pair = /*#__PURE__*/function () {
     var numerator = JSBI.multiply(JSBI.multiply(inputReserve.raw, outputAmount.raw), _1000);
     var denominator = JSBI.multiply(JSBI.subtract(outputReserve.raw, outputAmount.raw), _997);
     var inputAmount = new TokenAmount(outputAmount.token.equals(this.token0) ? this.token1 : this.token0, JSBI.add(JSBI.divide(numerator, denominator), ONE));
-    return [inputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount))];
+    return [inputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount), chainId)];
   };
 
   _proto.getLiquidityMinted = function getLiquidityMinted(totalSupply, tokenAmountA, tokenAmountB) {
@@ -1103,7 +1103,7 @@ function wrappedCurrency(currency, chainId) {
 
 
 var Trade = /*#__PURE__*/function () {
-  function Trade(route, amount, tradeType) {
+  function Trade(route, amount, tradeType, chainId) {
     var amounts = new Array(route.path.length);
     var nextPairs = new Array(route.pairs.length);
 
@@ -1114,7 +1114,7 @@ var Trade = /*#__PURE__*/function () {
       for (var i = 0; i < route.path.length - 1; i++) {
         var pair = route.pairs[i];
 
-        var _pair$getOutputAmount = pair.getOutputAmount(amounts[i]),
+        var _pair$getOutputAmount = pair.getOutputAmount(amounts[i], chainId),
             outputAmount = _pair$getOutputAmount[0],
             nextPair = _pair$getOutputAmount[1];
 
@@ -1128,7 +1128,7 @@ var Trade = /*#__PURE__*/function () {
       for (var _i = route.path.length - 1; _i > 0; _i--) {
         var _pair = route.pairs[_i - 1];
 
-        var _pair$getInputAmount = _pair.getInputAmount(amounts[_i]),
+        var _pair$getInputAmount = _pair.getInputAmount(amounts[_i], chainId),
             inputAmount = _pair$getInputAmount[0],
             _nextPair = _pair$getInputAmount[1];
 
@@ -1149,21 +1149,23 @@ var Trade = /*#__PURE__*/function () {
    * Constructs an exact in trade with the given amount in and route
    * @param route route of the exact in trade
    * @param amountIn the amount being passed in
+   * @param chainId
    */
 
 
-  Trade.exactIn = function exactIn(route, amountIn) {
-    return new Trade(route, amountIn, exports.TradeType.EXACT_INPUT);
+  Trade.exactIn = function exactIn(route, amountIn, chainId) {
+    return new Trade(route, amountIn, exports.TradeType.EXACT_INPUT, chainId);
   }
   /**
    * Constructs an exact out trade with the given amount out and route
    * @param route route of the exact out trade
    * @param amountOut the amount returned by the trade
+   * @param chainId
    */
   ;
 
-  Trade.exactOut = function exactOut(route, amountOut) {
-    return new Trade(route, amountOut, exports.TradeType.EXACT_OUTPUT);
+  Trade.exactOut = function exactOut(route, amountOut, chainId) {
+    return new Trade(route, amountOut, exports.TradeType.EXACT_OUTPUT, chainId);
   }
   /**
    * Get the minimum amount that must be received from this trade for the given slippage tolerance
@@ -1253,7 +1255,7 @@ var Trade = /*#__PURE__*/function () {
       try {
         ;
 
-        var _pair$getOutputAmount2 = pair.getOutputAmount(amountIn);
+        var _pair$getOutputAmount2 = pair.getOutputAmount(amountIn, chainId);
 
         amountOut = _pair$getOutputAmount2[0];
       } catch (error) {
@@ -1267,7 +1269,7 @@ var Trade = /*#__PURE__*/function () {
 
 
       if (amountOut.token.equals(tokenOut)) {
-        sortedInsert(bestTrades, new Trade(new Route([].concat(currentPairs, [pair]), originalAmountIn.currency, currencyOut), originalAmountIn, exports.TradeType.EXACT_INPUT), maxNumResults, tradeComparator);
+        sortedInsert(bestTrades, new Trade(new Route([].concat(currentPairs, [pair]), originalAmountIn.currency, currencyOut), originalAmountIn, exports.TradeType.EXACT_INPUT, chainId), maxNumResults, tradeComparator);
       } else if (maxHops > 1 && pairs.length > 1) {
         var pairsExcludingThisPair = pairs.slice(0, i).concat(pairs.slice(i + 1, pairs.length)); // otherwise, consider all the other paths that lead from this token as long as we have not exceeded maxHops
 
@@ -1335,7 +1337,7 @@ var Trade = /*#__PURE__*/function () {
       try {
         ;
 
-        var _pair$getInputAmount2 = pair.getInputAmount(amountOut);
+        var _pair$getInputAmount2 = pair.getInputAmount(amountOut, chainId);
 
         amountIn = _pair$getInputAmount2[0];
       } catch (error) {
@@ -1349,7 +1351,7 @@ var Trade = /*#__PURE__*/function () {
 
 
       if (amountIn.token.equals(tokenIn)) {
-        sortedInsert(bestTrades, new Trade(new Route([pair].concat(currentPairs), currencyIn, originalAmountOut.currency), originalAmountOut, exports.TradeType.EXACT_OUTPUT), maxNumResults, tradeComparator);
+        sortedInsert(bestTrades, new Trade(new Route([pair].concat(currentPairs), currencyIn, originalAmountOut.currency), originalAmountOut, exports.TradeType.EXACT_OUTPUT, chainId), maxNumResults, tradeComparator);
       } else if (maxHops > 1 && pairs.length > 1) {
         var pairsExcludingThisPair = pairs.slice(0, i).concat(pairs.slice(i + 1, pairs.length)); // otherwise, consider all the other paths that arrive at this token as long as we have not exceeded maxHops
 
@@ -1550,16 +1552,16 @@ var Fetcher = /*#__PURE__*/function () {
    */
   ;
 
-  Fetcher.fetchPairData = function fetchPairData(tokenA, tokenB, provider) {
+  Fetcher.fetchPairData = function fetchPairData(tokenA, tokenB, provider, chainId) {
     try {
       if (provider === undefined) provider = providers.getDefaultProvider(networks.getNetwork(tokenA.chainId));
       !(tokenA.chainId === tokenB.chainId) ? "development" !== "production" ? invariant(false, 'CHAIN_ID') : invariant(false) : void 0;
-      var address = Pair.getAddress(tokenA, tokenB);
+      var address = Pair.getAddress(tokenA, tokenB, chainId);
       return Promise.resolve(new contracts.Contract(address, IUniswapV2Pair.abi, provider).getReserves()).then(function (_ref) {
         var reserves0 = _ref[0],
             reserves1 = _ref[1];
         var balances = tokenA.sortsBefore(tokenB) ? [reserves0, reserves1] : [reserves1, reserves0];
-        return new Pair(new TokenAmount(tokenA, balances[0]), new TokenAmount(tokenB, balances[1]));
+        return new Pair(new TokenAmount(tokenA, balances[0]), new TokenAmount(tokenB, balances[1]), chainId);
       });
     } catch (e) {
       return Promise.reject(e);
@@ -1573,10 +1575,10 @@ exports.JSBI = JSBI;
 exports.Currency = Currency;
 exports.CurrencyAmount = CurrencyAmount;
 exports.ETHER = ETHER;
-exports.FACTORY_ADDRESS = FACTORY_ADDRESS;
+exports.FACTORY_ADDRESSES = FACTORY_ADDRESSES;
 exports.Fetcher = Fetcher;
 exports.Fraction = Fraction;
-exports.INIT_CODE_HASH = INIT_CODE_HASH;
+exports.INIT_CODE_HASHES = INIT_CODE_HASHES;
 exports.InsufficientInputAmountError = InsufficientInputAmountError;
 exports.InsufficientReservesError = InsufficientReservesError;
 exports.MINIMUM_LIQUIDITY = MINIMUM_LIQUIDITY;

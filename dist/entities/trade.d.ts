@@ -1,4 +1,4 @@
-import { TradeType } from '../constants';
+import { ChainId, TradeType } from '../constants';
 import { Currency } from './currency';
 import { CurrencyAmount } from './fractions/currencyAmount';
 import { Percent } from './fractions/percent';
@@ -52,15 +52,17 @@ export declare class Trade {
      * Constructs an exact in trade with the given amount in and route
      * @param route route of the exact in trade
      * @param amountIn the amount being passed in
+     * @param chainId
      */
-    static exactIn(route: Route, amountIn: CurrencyAmount): Trade;
+    static exactIn(route: Route, amountIn: CurrencyAmount, chainId: ChainId): Trade;
     /**
      * Constructs an exact out trade with the given amount out and route
      * @param route route of the exact out trade
      * @param amountOut the amount returned by the trade
+     * @param chainId
      */
-    static exactOut(route: Route, amountOut: CurrencyAmount): Trade;
-    constructor(route: Route, amount: CurrencyAmount, tradeType: TradeType);
+    static exactOut(route: Route, amountOut: CurrencyAmount, chainId: ChainId): Trade;
+    constructor(route: Route, amount: CurrencyAmount, tradeType: TradeType, chainId: ChainId);
     /**
      * Get the minimum amount that must be received from this trade for the given slippage tolerance
      * @param slippageTolerance tolerance of unfavorable slippage from the execution price of this trade
