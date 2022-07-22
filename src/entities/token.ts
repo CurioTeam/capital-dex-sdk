@@ -68,5 +68,5 @@ export const WETH = {
   [ChainId.SKALE]: new Token(ChainId.SKALE, '0xD2Aaa00700000000000000000000000000000000', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.SKALE_TESTNET]: new Token(ChainId.SKALE_TESTNET, '0xC1308Be8cbd6c6e1F352b11aA75230b3A1fC6034', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.AURORA_TESTNET]: new Token(ChainId.AURORA_TESTNET, '0x219bF573A543B8246BdA9c2606AFCB6BcbAcC7da', 18, 'WETH', 'Wrapped Ether'),
-  [ChainId.BOBA_NETWORK]: new Token(ChainId.BOBA_NETWORK, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'WETH', 'Wrapped Ether')
+  [ChainId.BOBA_TESTNET]: new Token(ChainId.BOBA_TESTNET, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'WETH', 'Wrapped Ether')
 }

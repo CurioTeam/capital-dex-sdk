@@ -6,7 +6,7 @@ export declare enum ChainId {
     SKALE = 836542336838601,
     SKALE_TESTNET = 2317290928455356,
     AURORA_TESTNET = 1313161555,
-    BOBA_NETWORK = 28
+    BOBA_TESTNET = 28
 }
 export declare enum TradeType {
     EXACT_INPUT = 0,
