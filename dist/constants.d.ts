@@ -4,7 +4,7 @@ export declare enum ChainId {
     MAINNET = 1,
     KOVAN = 42,
     SKALE = 836542336838601,
-    SKALE_TESTNET = 2317290928455356,
+    SKALE_TESTNET = 1171947029810826,
     AURORA_TESTNET = 1313161555,
     BOBA_TESTNET = 28
 }
@@ -21,7 +21,7 @@ export declare const FACTORY_ADDRESSES: {
     1: string;
     42: string;
     836542336838601: string;
-    2317290928455356: string;
+    1171947029810826: string;
     28: string;
     1313161555: string;
 };
@@ -29,7 +29,7 @@ export declare const INIT_CODE_HASHES: {
     1: string;
     42: string;
     836542336838601: string;
-    2317290928455356: string;
+    1171947029810826: string;
     28: string;
     1313161555: string;
 };
