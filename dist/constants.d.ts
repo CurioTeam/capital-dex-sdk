@@ -6,6 +6,7 @@ export declare enum ChainId {
     SKALE = 836542336838601,
     SKALE_TESTNET = 1171947029810826,
     AURORA_TESTNET = 1313161555,
+    AURORA = 1313161554,
     BOBA_TESTNET = 28
 }
 export declare enum TradeType {
@@ -24,6 +25,7 @@ export declare const FACTORY_ADDRESSES: {
     1171947029810826: string;
     28: string;
     1313161555: string;
+    1313161554: string;
 };
 export declare const INIT_CODE_HASHES: {
     1: string;
@@ -32,6 +34,7 @@ export declare const INIT_CODE_HASHES: {
     1171947029810826: string;
     28: string;
     1313161555: string;
+    1313161554: string;
 };
 export declare const MINIMUM_LIQUIDITY: JSBI;
 export declare const ZERO: JSBI;
