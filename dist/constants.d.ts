@@ -2,7 +2,7 @@ import JSBI from 'jsbi';
 export declare type BigintIsh = JSBI | bigint | string;
 export declare enum ChainId {
     MAINNET = 1,
-    KOVAN = 42,
+    GOERLI = 5,
     SKALE = 836542336838601,
     SKALE_TESTNET = 1171947029810826,
     AURORA_TESTNET = 1313161555,
@@ -21,7 +21,7 @@ export declare enum Rounding {
 }
 export declare const FACTORY_ADDRESSES: {
     1: string;
-    42: string;
+    5: string;
     836542336838601: string;
     1171947029810826: string;
     28: string;
@@ -31,7 +31,7 @@ export declare const FACTORY_ADDRESSES: {
 };
 export declare const INIT_CODE_HASHES: {
     1: string;
-    42: string;
+    5: string;
     836542336838601: string;
     1171947029810826: string;
     28: string;
