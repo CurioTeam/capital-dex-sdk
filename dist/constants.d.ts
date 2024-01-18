@@ -8,7 +8,9 @@ export declare enum ChainId {
     AURORA = 1313161554,
     AURORA_TESTNET = 1313161555,
     BOBA = 288,
-    BOBA_TESTNET = 28
+    BOBA_TESTNET = 28,
+    BSC_TESTNET = 97,
+    NEON_DEVNET = 245022926
 }
 export declare enum TradeType {
     EXACT_INPUT = 0,
@@ -28,6 +30,8 @@ export declare const FACTORY_ADDRESSES: {
     1313161555: string;
     1313161554: string;
     288: string;
+    97: string;
+    245022926: string;
 };
 export declare const ROUTER_ADDRESSES: {
     1: string;
@@ -38,6 +42,8 @@ export declare const ROUTER_ADDRESSES: {
     1313161555: string;
     1313161554: string;
     288: string;
+    97: string;
+    245022926: string;
 };
 export declare const INIT_CODE_HASHES: {
     1: string;
@@ -48,6 +54,8 @@ export declare const INIT_CODE_HASHES: {
     1313161555: string;
     1313161554: string;
     288: string;
+    97: string;
+    245022926: string;
 };
 export declare const MINIMUM_LIQUIDITY: JSBI;
 export declare const ZERO: JSBI;
