@@ -5,11 +5,12 @@ export declare enum ChainId {
     GOERLI = 5,
     SKALE = 836542336838601,
     SKALE_TESTNET = 1171947029810826,
-    AURORA_TESTNET = 1313161555,
     AURORA = 1313161554,
-    BOBA_TESTNET = 28,
+    AURORA_TESTNET = 1313161555,
     BOBA = 288,
-    BSC_TESTNET = 97
+    BOBA_TESTNET = 28,
+    BSC_TESTNET = 97,
+    NEON_DEVNET = 245022926
 }
 export declare enum TradeType {
     EXACT_INPUT = 0,
@@ -30,6 +31,19 @@ export declare const FACTORY_ADDRESSES: {
     1313161554: string;
     288: string;
     97: string;
+    245022926: string;
+};
+export declare const ROUTER_ADDRESSES: {
+    1: string;
+    5: string;
+    1171947029810826: string;
+    836542336838601: string;
+    28: string;
+    1313161555: string;
+    1313161554: string;
+    288: string;
+    97: string;
+    245022926: string;
 };
 export declare const INIT_CODE_HASHES: {
     1: string;
@@ -41,6 +55,7 @@ export declare const INIT_CODE_HASHES: {
     1313161554: string;
     288: string;
     97: string;
+    245022926: string;
 };
 export declare const MINIMUM_LIQUIDITY: JSBI;
 export declare const ZERO: JSBI;
