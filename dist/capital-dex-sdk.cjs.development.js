@@ -1592,6 +1592,7 @@ exports.MINIMUM_LIQUIDITY = MINIMUM_LIQUIDITY;
 exports.Pair = Pair;
 exports.Percent = Percent;
 exports.Price = Price;
+exports.ROUTER_ADDRESSES = ROUTER_ADDRESSES;
 exports.Route = Route;
 exports.Router = Router;
 exports.Token = Token;
