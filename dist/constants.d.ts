@@ -9,6 +9,7 @@ export declare enum ChainId {
     AURORA_TESTNET = 1313161555,
     BOBA = 288,
     BOBA_TESTNET = 28,
+    BSC = 56,
     BSC_TESTNET = 97,
     NEON = 245022934,
     NEON_DEVNET = 245022926
@@ -31,6 +32,7 @@ export declare const FACTORY_ADDRESSES: {
     1313161555: string;
     1313161554: string;
     288: string;
+    56: string;
     97: string;
     245022934: string;
     245022926: string;
@@ -44,6 +46,7 @@ export declare const ROUTER_ADDRESSES: {
     1313161555: string;
     1313161554: string;
     288: string;
+    56: string;
     97: string;
     245022934: string;
     245022926: string;
@@ -57,6 +60,7 @@ export declare const INIT_CODE_HASHES: {
     1313161555: string;
     1313161554: string;
     288: string;
+    56: string;
     97: string;
     245022934: string;
     245022926: string;
