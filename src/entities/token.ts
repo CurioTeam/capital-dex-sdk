@@ -66,6 +66,6 @@ export const WETH = {
   [ChainId.BOBA]: new Token(ChainId.BOBA, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.BOBA_TESTNET]: new Token(ChainId.BOBA_TESTNET, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, '0x26FA2E430c1c252cD8f2ddB02801d4a4f30936fF', 18, 'WBNB', 'Wrapped BNB'),
-  // [ChainId.NEON]: new Token(ChainId.NEON, "", 18, "WNEON", "Wrapped Neon"),
+  [ChainId.NEON]: new Token(ChainId.NEON, "0x202C35e517Fa803B537565c40F0a6965D7204609", 18, "WNEON", "Wrapped Neon"),
   [ChainId.NEON_DEVNET]: new Token(ChainId.NEON_DEVNET, "0x11adC2d986E334137b9ad0a0F290771F31e9517F", 18, "WNEON", "Wrapped Neon"),
 }
