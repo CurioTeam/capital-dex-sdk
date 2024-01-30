@@ -369,18 +369,20 @@ var Currency =
  * @param decimals decimals of the currency
  * @param symbol symbol of the currency
  * @param name of the currency
+ * @param displaySymbol
  */
-function Currency(decimals, symbol, name) {
+function Currency(decimals, symbol, name, displaySymbol) {
   validateSolidityTypeInstance(JSBI.BigInt(decimals), SolidityType.uint8);
   this.decimals = decimals;
   this.symbol = symbol;
   this.name = name;
+  this.displaySymbol = displaySymbol;
 };
 /**
  * The only instance of the base class `Currency`.
  */
 
-Currency.ETHER = /*#__PURE__*/new Currency(18, 'ETH', 'Ether');
+Currency.ETHER = /*#__PURE__*/new Currency(18, 'ETH', 'Ether', 'ETH');
 var ETHER = Currency.ETHER;
 
 var _WETH;
