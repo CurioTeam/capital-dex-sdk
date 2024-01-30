@@ -376,14 +376,16 @@ function Currency(decimals, symbol, name, displaySymbol) {
   this.decimals = decimals;
   this.symbol = symbol;
   this.name = name;
-  this.displaySymbol = displaySymbol;
+  this.displaySymbol = symbol !== null && symbol !== void 0 ? symbol : displaySymbol;
 };
 /**
  * The only instance of the base class `Currency`.
  */
 
-Currency.ETHER = /*#__PURE__*/new Currency(18, 'ETH', 'Ether', 'ETH');
+Currency.ETHER = /*#__PURE__*/new Currency(18, 'ETH', 'Ether');
+Currency.ETHER_NEON = /*#__PURE__*/new Currency(18, 'ETH', 'Ether', 'NEON');
 var ETHER = Currency.ETHER;
+var ETHER_NEON = Currency.ETHER_NEON;
 
 var _WETH;
 /**
@@ -1585,6 +1587,7 @@ exports.JSBI = JSBI;
 exports.Currency = Currency;
 exports.CurrencyAmount = CurrencyAmount;
 exports.ETHER = ETHER;
+exports.ETHER_NEON = ETHER_NEON;
 exports.FACTORY_ADDRESSES = FACTORY_ADDRESSES;
 exports.Fetcher = Fetcher;
 exports.Fraction = Fraction;
