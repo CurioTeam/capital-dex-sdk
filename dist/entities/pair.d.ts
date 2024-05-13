@@ -5,8 +5,8 @@ import { Token } from './token';
 export declare class Pair {
     readonly liquidityToken: Token;
     private readonly tokenAmounts;
-    static getAddress(tokenA: Token, tokenB: Token): string;
-    constructor(tokenAmountA: TokenAmount, tokenAmountB: TokenAmount);
+    static getAddress(tokenA: Token, tokenB: Token, chainId: ChainId): string;
+    constructor(tokenAmountA: TokenAmount, tokenAmountB: TokenAmount, chainId: ChainId);
     /**
      * Returns true if the token is either token0 or token1
      * @param token to check
@@ -34,8 +34,8 @@ export declare class Pair {
     get reserve0(): TokenAmount;
     get reserve1(): TokenAmount;
     reserveOf(token: Token): TokenAmount;
-    getOutputAmount(inputAmount: TokenAmount): [TokenAmount, Pair];
-    getInputAmount(outputAmount: TokenAmount): [TokenAmount, Pair];
+    getOutputAmount(inputAmount: TokenAmount, chainId: ChainId): [TokenAmount, Pair];
+    getInputAmount(outputAmount: TokenAmount, chainId: ChainId): [TokenAmount, Pair];
     getLiquidityMinted(totalSupply: TokenAmount, tokenAmountA: TokenAmount, tokenAmountB: TokenAmount): TokenAmount;
     getLiquidityValue(token: Token, totalSupply: TokenAmount, liquidity: TokenAmount, feeOn?: boolean, kLast?: BigintIsh): TokenAmount;
 }

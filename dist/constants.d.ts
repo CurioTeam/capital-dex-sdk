@@ -2,7 +2,17 @@ import JSBI from 'jsbi';
 export declare type BigintIsh = JSBI | bigint | string;
 export declare enum ChainId {
     MAINNET = 1,
-    SEPOLIA = 11155111
+    GOERLI = 5,
+    SKALE = 836542336838601,
+    SKALE_TESTNET = 1171947029810826,
+    AURORA = 1313161554,
+    AURORA_TESTNET = 1313161555,
+    BOBA = 288,
+    BOBA_TESTNET = 28,
+    BSC = 56,
+    BSC_TESTNET = 97,
+    NEON = 245022934,
+    NEON_DEVNET = 245022926
 }
 export declare enum TradeType {
     EXACT_INPUT = 0,
@@ -13,8 +23,48 @@ export declare enum Rounding {
     ROUND_HALF_UP = 1,
     ROUND_UP = 2
 }
-export declare const FACTORY_ADDRESS = "0x8E0E163E9F66d639c448d1f5e0594CaC2558305e";
-export declare const INIT_CODE_HASH = "0xeb421c75c82ac3e801293f21bf65f03f21b5a26a0921355126d34b4c5173bfe9";
+export declare const FACTORY_ADDRESSES: {
+    1: string;
+    5: string;
+    836542336838601: string;
+    1171947029810826: string;
+    28: string;
+    1313161555: string;
+    1313161554: string;
+    288: string;
+    56: string;
+    97: string;
+    245022934: string;
+    245022926: string;
+};
+export declare const ROUTER_ADDRESSES: {
+    1: string;
+    5: string;
+    1171947029810826: string;
+    836542336838601: string;
+    28: string;
+    1313161555: string;
+    1313161554: string;
+    288: string;
+    56: string;
+    97: string;
+    245022934: string;
+    245022926: string;
+};
+export declare const INIT_CODE_HASHES: {
+    1: string;
+    5: string;
+    836542336838601: string;
+    1171947029810826: string;
+    28: string;
+    1313161555: string;
+    1313161554: string;
+    288: string;
+    56: string;
+    97: string;
+    245022934: string;
+    245022926: string;
+};
 export declare const MINIMUM_LIQUIDITY: JSBI;
 export declare const ZERO: JSBI;
 export declare const ONE: JSBI;
