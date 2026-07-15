@@ -1,13 +1,13 @@
 import invariant from 'tiny-invariant'
-import {ChainId, Pair, Rounding, Route, Token, TokenAmount, Trade, TradeType, WETH as _WETH} from '../src'
+import { ChainId, Pair, Rounding, Route, Token, TokenAmount, Trade, TradeType, WETH as _WETH } from '../src'
 
 const ADDRESSES = [
   '0x0000000000000000000000000000000000000001',
   '0x0000000000000000000000000000000000000002',
   '0x0000000000000000000000000000000000000003'
 ]
-const CHAIN_ID = ChainId.GOERLI
-const WETH = _WETH[ChainId.GOERLI]
+const CHAIN_ID = ChainId.SEPOLIA
+const WETH = _WETH[ChainId.SEPOLIA]
 const DECIMAL_PERMUTATIONS: [number, number, number][] = [
   [0, 0, 0],
   [0, 9, 18],
@@ -36,15 +36,18 @@ describe('entities', () => {
         pairs = [
           new Pair(
             new TokenAmount(tokens[0], decimalize(1, tokens[0].decimals)),
-            new TokenAmount(tokens[1], decimalize(1, tokens[1].decimals)), CHAIN_ID
+            new TokenAmount(tokens[1], decimalize(1, tokens[1].decimals)),
+            CHAIN_ID
           ),
           new Pair(
             new TokenAmount(tokens[1], decimalize(1, tokens[1].decimals)),
-            new TokenAmount(tokens[2], decimalize(1, tokens[2].decimals)), CHAIN_ID
+            new TokenAmount(tokens[2], decimalize(1, tokens[2].decimals)),
+            CHAIN_ID
           ),
           new Pair(
             new TokenAmount(tokens[2], decimalize(1, tokens[2].decimals)),
-            new TokenAmount(WETH, decimalize(1234, WETH.decimals)), CHAIN_ID
+            new TokenAmount(WETH, decimalize(1234, WETH.decimals)),
+            CHAIN_ID
           )
         ]
       })
@@ -104,7 +107,8 @@ describe('entities', () => {
             [
               new Pair(
                 new TokenAmount(tokens[1], decimalize(5, tokens[1].decimals)),
-                new TokenAmount(WETH, decimalize(10, WETH.decimals)), CHAIN_ID
+                new TokenAmount(WETH, decimalize(10, WETH.decimals)),
+                CHAIN_ID
               )
             ],
             tokens[1]
@@ -158,7 +162,8 @@ describe('entities', () => {
                     WETH,
                     decimalize(10, WETH.decimals) +
                       (tokens[1].decimals === 9 ? BigInt('30090280812437312') : BigInt('30090270812437322'))
-                  ), CHAIN_ID
+                  ),
+                  CHAIN_ID
                 )
               ],
               tokens[1]

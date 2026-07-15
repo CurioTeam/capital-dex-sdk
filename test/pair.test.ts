@@ -1,4 +1,4 @@
-import {ChainId, Pair, Price, Token, TokenAmount, WETH} from '../src'
+import { ChainId, Pair, Price, Token, TokenAmount, WETH } from '../src'
 
 describe('Pair', () => {
   const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18, 'USDC', 'USD Coin')
@@ -6,15 +6,24 @@ describe('Pair', () => {
 
   describe('constructor', () => {
     it('cannot be used for tokens on different chains', () => {
-      expect(() => new Pair(new TokenAmount(USDC, '100'), new TokenAmount(WETH[ChainId.GOERLI], '100'), ChainId.MAINNET)).toThrow(
-        'CHAIN_IDS'
-      )
+      expect(
+        () => new Pair(new TokenAmount(USDC, '100'), new TokenAmount(WETH[ChainId.SEPOLIA], '100'), ChainId.MAINNET)
+      ).toThrow('CHAIN_IDS')
     })
   })
 
   describe('#getAddress', () => {
     it('returns the correct address', () => {
       expect(Pair.getAddress(USDC, DAI, ChainId.MAINNET)).toEqual('0x2271285931f3b093aDf931C9f7089EB4C896F154')
+    })
+
+    it('returns the correct Sepolia address regardless of token order', () => {
+      const XAUH = new Token(ChainId.SEPOLIA, '0x1ed71a140866c94Ec0d7854Fd32C296f323155f2', 18, 'XAUH')
+      const USDT = new Token(ChainId.SEPOLIA, '0x6E4f0B062f568bbfdE829811B2AfcF0177Ef7E27', 6, 'USDT')
+      const expectedAddress = '0x44F48fD2d3fbf153dce044dA5563780849304E30'
+
+      expect(Pair.getAddress(XAUH, USDT, ChainId.SEPOLIA)).toEqual(expectedAddress)
+      expect(Pair.getAddress(USDT, XAUH, ChainId.SEPOLIA)).toEqual(expectedAddress)
     })
   })
 
@@ -87,32 +96,44 @@ describe('Pair', () => {
 
   describe('#reserveOf', () => {
     it('returns reserves of the given token', () => {
-      expect(new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '101'), ChainId.MAINNET).reserveOf(USDC)).toEqual(
-        new TokenAmount(USDC, '100')
-      )
-      expect(new Pair(new TokenAmount(DAI, '101'), new TokenAmount(USDC, '100'), ChainId.MAINNET).reserveOf(USDC)).toEqual(
-        new TokenAmount(USDC, '100')
-      )
+      expect(
+        new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '101'), ChainId.MAINNET).reserveOf(USDC)
+      ).toEqual(new TokenAmount(USDC, '100'))
+      expect(
+        new Pair(new TokenAmount(DAI, '101'), new TokenAmount(USDC, '100'), ChainId.MAINNET).reserveOf(USDC)
+      ).toEqual(new TokenAmount(USDC, '100'))
     })
 
     it('throws if not in the pair', () => {
       expect(() =>
-        new Pair(new TokenAmount(DAI, '101'), new TokenAmount(USDC, '100'), ChainId.MAINNET).reserveOf(WETH[ChainId.MAINNET])
+        new Pair(new TokenAmount(DAI, '101'), new TokenAmount(USDC, '100'), ChainId.MAINNET).reserveOf(
+          WETH[ChainId.MAINNET]
+        )
       ).toThrow('TOKEN')
     })
   })
 
   describe('#chainId', () => {
     it('returns the token0 chainId', () => {
-      expect(new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100'), ChainId.MAINNET).chainId).toEqual(ChainId.MAINNET)
-      expect(new Pair(new TokenAmount(DAI, '100'), new TokenAmount(USDC, '100'), ChainId.MAINNET).chainId).toEqual(ChainId.MAINNET)
+      expect(new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100'), ChainId.MAINNET).chainId).toEqual(
+        ChainId.MAINNET
+      )
+      expect(new Pair(new TokenAmount(DAI, '100'), new TokenAmount(USDC, '100'), ChainId.MAINNET).chainId).toEqual(
+        ChainId.MAINNET
+      )
     })
   })
   describe('#involvesToken', () => {
-    expect(new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100'), ChainId.MAINNET).involvesToken(USDC)).toEqual(true)
-    expect(new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100'), ChainId.MAINNET).involvesToken(DAI)).toEqual(true)
     expect(
-      new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100'), ChainId.MAINNET).involvesToken(WETH[ChainId.MAINNET])
+      new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100'), ChainId.MAINNET).involvesToken(USDC)
+    ).toEqual(true)
+    expect(
+      new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100'), ChainId.MAINNET).involvesToken(DAI)
+    ).toEqual(true)
+    expect(
+      new Pair(new TokenAmount(USDC, '100'), new TokenAmount(DAI, '100'), ChainId.MAINNET).involvesToken(
+        WETH[ChainId.MAINNET]
+      )
     ).toEqual(false)
   })
 })
