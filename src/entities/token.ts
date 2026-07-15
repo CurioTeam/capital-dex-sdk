@@ -1,7 +1,7 @@
 import invariant from 'tiny-invariant'
-import {ChainId} from '../constants'
-import {validateAndParseAddress} from '../utils'
-import {Currency} from './currency'
+import { ChainId } from '../constants'
+import { validateAndParseAddress } from '../utils'
+import { Currency } from './currency'
 
 /**
  * Represents an ERC20 token with a unique address and some metadata.
@@ -57,16 +57,64 @@ export function currencyEquals(currencyA: Currency, currencyB: Currency): boolea
 }
 
 export const WETH = {
-  [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 18, 'WETH','Wrapped Ether'),
-  [ChainId.SEPOLIA]: new Token(ChainId.SEPOLIA, '0xDe82Ca1c4fA2D583825b945902a9415C46b66252', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET,
+    '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.SEPOLIA]: new Token(
+    ChainId.SEPOLIA,
+    '0xDe82Ca1c4fA2D583825b945902a9415C46b66252',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
   [ChainId.SKALE]: new Token(ChainId.SKALE, '0xD2Aaa00700000000000000000000000000000000', 18, 'WETH', 'Wrapped Ether'),
-  [ChainId.SKALE_TESTNET]: new Token(ChainId.SKALE_TESTNET, '0xD2Aaa00700000000000000000000000000000000', 18, 'WETH', 'Wrapped Ether'),
-  [ChainId.AURORA]: new Token(ChainId.AURORA, '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB', 18, 'WETH', 'Wrapped Ether'),
-  [ChainId.AURORA_TESTNET]: new Token(ChainId.AURORA_TESTNET, '0x219bF573A543B8246BdA9c2606AFCB6BcbAcC7da', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.SKALE_TESTNET]: new Token(
+    ChainId.SKALE_TESTNET,
+    '0xD2Aaa00700000000000000000000000000000000',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.AURORA]: new Token(
+    ChainId.AURORA,
+    '0xC9BdeEd33CD01541e1eeD10f90519d2C06Fe3feB',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.AURORA_TESTNET]: new Token(
+    ChainId.AURORA_TESTNET,
+    '0x219bF573A543B8246BdA9c2606AFCB6BcbAcC7da',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
   [ChainId.BOBA]: new Token(ChainId.BOBA, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'WETH', 'Wrapped Ether'),
-  [ChainId.BOBA_TESTNET]: new Token(ChainId.BOBA_TESTNET, '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.BOBA_TESTNET]: new Token(
+    ChainId.BOBA_TESTNET,
+    '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
   [ChainId.BSC]: new Token(ChainId.BSC, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'WBNB', 'Wrapped BNB'),
-  [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, '0x26FA2E430c1c252cD8f2ddB02801d4a4f30936fF', 18, 'WBNB', 'Wrapped BNB'),
-  [ChainId.NEON]: new Token(ChainId.NEON, "0x202C35e517Fa803B537565c40F0a6965D7204609", 18, "WNEON", "Wrapped Neon"),
-  [ChainId.NEON_DEVNET]: new Token(ChainId.NEON_DEVNET, "0x11adC2d986E334137b9ad0a0F290771F31e9517F", 18, "WNEON", "Wrapped Neon"),
+  [ChainId.BSC_TESTNET]: new Token(
+    ChainId.BSC_TESTNET,
+    '0x26FA2E430c1c252cD8f2ddB02801d4a4f30936fF',
+    18,
+    'WBNB',
+    'Wrapped BNB'
+  ),
+  [ChainId.NEON]: new Token(ChainId.NEON, '0x202C35e517Fa803B537565c40F0a6965D7204609', 18, 'WNEON', 'Wrapped Neon'),
+  [ChainId.NEON_DEVNET]: new Token(
+    ChainId.NEON_DEVNET,
+    '0x11adC2d986E334137b9ad0a0F290771F31e9517F',
+    18,
+    'WNEON',
+    'Wrapped Neon'
+  )
 }

@@ -257,7 +257,7 @@ export class Trade {
     // used in recursion.
     currentPairs: Pair[] = [],
     originalAmountIn: CurrencyAmount = currencyAmountIn,
-    bestTrades: Trade[] = [],
+    bestTrades: Trade[] = []
   ): Trade[] {
     invariant(pairs.length > 0, 'PAIRS')
     invariant(maxHops > 0, 'MAX_HOPS')
